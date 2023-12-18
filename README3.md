@@ -1,13 +1,13 @@
-1) Подумать над обработкой КТ: аутентификация, авторизация, шифрование в бд,
-шифрование передачи данных между клиентов и сервером.
-   как синхронизировать аутентификацию юзеров между django и react
-2) подключить postgresql +
-   как построить каноническую модель
-3) наладить загрузку шаблонов в базу
-   при работающем сервере файлы добавляются, но не должно быть записей, которые уже
-   были в базе, и для добавления нужен интерпретатор питона, то есть желательно
-   сделать gui. ()
-   даже с gui вопрос, как сделать чтобы добавились все записи, кроме уже имеющихся
+1) Think about (Confidential information) processing: authentication, authorization, encryption in the database,
+encryption of data transfer between clients and server.
+   How to synchronize user authentication between django and react
+2) connect postgresql +
+   how to build a canonical model
+3) set up loading of templates into the database
+   When the server is running, files are added, but there should be no records that already
+   were in the database, and to add need a python interpreter, that is, it is desirable to
+   make gui. ()
+   Even with the gui question, how to make all records added, except for the existing ones.
    
-4) наладить загрузку по расписанию файлов в бд (планировщик задач) celery?
+4) set up scheduled loading of files in the database (task scheduler) celery?
 redis? jenkins?
