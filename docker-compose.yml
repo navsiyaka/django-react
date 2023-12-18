@@ -1,0 +1,77 @@
+# Defining the docker-compose version and starting to describe services
+version: '3.9'
+
+#describe 3 services:
+#1) a clean database, which we download from the official
+#  repository and put in a container
+#2) frontend written in react, js
+#3) backend written in django, python
+
+services:
+  # database settings
+  db:
+    image: postgres
+
+#    #port forwarding from the container to the outside
+    ports:
+      - '5432:5432'
+
+    #set default values for our database
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=poss
+    #port forwarding from the container to the outside
+    container_name: db
+    volumes:
+      - ./data/db:/var/lib/postgresql/data/
+
+  # frontend settings
+  frontend:
+    # describe, where lay our Dockerfile
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+
+    #port forwarding from the container to the outside
+    ports:
+      - '3000:3000'
+
+    #port forwarding from the container to the outside
+    volumes:
+      - ./frontend:/app/frontend
+
+    # specify that this container is dependent on the backend container
+    depends_on:
+      - backend
+
+  #backend settings
+  backend:
+    restart: unless-stopped
+    build: ./backend
+    # Задание команды, которую нужно запустить при запуске контейнера для сервиса django
+    command: python manage.py runserver 0.0.0.0:8000
+
+    #hz why to specify it, but we say that we are
+    #working in a container on port 8000.
+    expose:
+      - 8000
+
+   #set params to access database
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=poss
+
+    #port forwarding from the container to the outside
+    ports:
+      - '8000:8000'
+
+    #port forwarding from the container to the outside
+    volumes:
+      - ./static:/usr/src/static
+      - ./media:/usr/src/media
+
+  # specify that this container is dependent on the database
+    depends_on:
+      - db

@@ -1,0 +1,28 @@
+# integration with C languages
+cffi == 1.15.1
+# django library
+Django == 4.2.7
+# drf library
+djangorestframework == 3.14.0
+# connect to postgresql
+psycopg2-binary == 2.9.5
+# work with images
+pillow == 10.1.0
+# text formatting
+markdown == 3.5.1
+#help with data view filter
+django-filter == 23.4
+# set of utilities for django
+django-extensions == 3.2.3
+# protect from cors attacks
+django-cors-headers == 3.13.0
+# import/export data in models
+django-import-export == 3.3.4
+# for saving variables in project
+django-environ == 0.11.2
+# help with foreign models
+drf-writable-nested == 0.7.0
+# for jwt token setting
+djangorestframework-simplejwt == 5.3.1
+# hz, server for django running
+gunicorn == 21.2.0
